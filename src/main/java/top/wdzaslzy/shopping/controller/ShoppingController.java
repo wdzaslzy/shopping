@@ -1,13 +1,11 @@
 package top.wdzaslzy.shopping.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.wdzaslzy.shopping.service.GenerateLogService;
 
 /**
  * @author lizy
@@ -16,14 +14,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("v1")
 public class ShoppingController {
 
-    private Logger logger = LoggerFactory.getLogger("shoppingInfo");
     @Autowired
-    private ObjectMapper objectMapper;
+    private GenerateLogService generateLogService;
 
-    @RequestMapping(value = "/log/generate", method = RequestMethod.POST)
+    @RequestMapping(value = "/log/generate/shopping", method = RequestMethod.GET)
     @ResponseBody
-    public String generateLog(){
-        logger.info("log");
+    public String generateShoppingLog() {
+        generateLogService.generateAddShoppingCartLog();
+        return "success";
+    }
+
+    @RequestMapping(value = "log/generate/collection", method = RequestMethod.GET)
+    @ResponseBody
+    public String generateCollectionLog() {
+        generateLogService.generateCollectGoodsLog();
         return "success";
     }
 
