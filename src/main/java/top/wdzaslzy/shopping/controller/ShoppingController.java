@@ -31,4 +31,11 @@ public class ShoppingController {
         return "success";
     }
 
+    @RequestMapping(value = "log/handle", method = RequestMethod.GET)
+    @ResponseBody
+    public String handleLog(){
+
+        return "success";
+    }
+
 }
